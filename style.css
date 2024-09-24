@@ -67,7 +67,6 @@ h5,
 h6,
 span {
   overflow-wrap: break-word;
-  
 }
 
 .main {
@@ -365,7 +364,7 @@ label {
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
-  background-color: #82ce51;
+  background-color: #ff746c;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -375,7 +374,7 @@ label {
 .office-notes-button:hover,
 .tech-notes-button:hover,
 .future-button:hover {
-  background-color: #75c142;
+  background-color: #f15c54;
 }
 
 .submit-button {
@@ -528,7 +527,7 @@ body.modal-open {
 }
 
 .toggle-button.selected-button {
-  background-color: #82ce51;
+  background-color: #ff746c;
   color: #ffffff;
 }
 
@@ -540,7 +539,7 @@ body.modal-open {
   cursor: pointer;
   display: block;
   padding: 10px 14px;
-  background-color: #82ce51;
+  background-color: #ff746c;
   color: white;
   border-radius: 4px;
   width: 100%;
@@ -1349,9 +1348,9 @@ body.modal-open {
 }
 
 .tab.active {
-  background-color: #82ce51;
+  background-color: #ff746c;
   color: #ffffff;
-  border-color: #82ce51;
+  border-color: #ff746c;
 }
 
 .payment-modal-body {
@@ -1427,7 +1426,7 @@ body.modal-open {
   padding: 8px 10px;
   font-size: 16px;
   font-weight: 500;
-  background-color: #75c142;
+  background-color: #f15c54;
   color: #ffffff;
   border: 0;
   border-radius: 4px;
@@ -1436,7 +1435,7 @@ body.modal-open {
 }
 
 .payment-modal-btn:hover {
-  background-color: #82ce51;
+  background-color: #ff746c;
 }
 
 .card-images {
@@ -1546,7 +1545,7 @@ body.modal-open {
     border-radius: 10px;
     object-fit: cover;
     flex: 0;
-}
+  }
 }
 
 /* @media (max-width: 600px) {
