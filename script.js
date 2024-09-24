@@ -1,7 +1,7 @@
 document.getElementById('login-form').addEventListener('submit', function (e) {
   e.preventDefault()
 
-  // Fake login validation
+  // Fake login validations
   const companyId = document.getElementById('company-id').value
   const username = document.getElementById('username').value
   const password = document.getElementById('password').value
