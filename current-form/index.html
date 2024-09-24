@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buckets Login and Dashboard</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="">
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen screen show">
+      <div class="logo">
+        <img src="./public/logo-2.png" alt="Buckets Logo" class="login-logo" />
+      </div>
+      <h1>Welcome Back!</h1>
+      <p>
+        Please sign in to continue to your account. Enter your details below.
+      </p>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="company-id">Company ID</label>
+          <input
+            type="text"
+            id="company-id"
+            placeholder="Type your company ID"
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Type your username" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-container">
+            <input
+              type="password"
+              id="password"
+              placeholder="Type your password"
+            />
+            <button type="button" id="toggle-password">👁️</button>
+          </div>
+        </div>
+
+        <div class="remember-me">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen hidden">
+      <div class="header">
+        <div class="header-content">
+          <img src="./public/logo-2.png" alt="Logo" class="main-logo" />
+          <div class="user-info">
+            <div class="top-new-row">
+              <img
+                src="./public/user-icon-1.png"
+                alt="User Icon"
+                class="user-icon"
+              />
+              <p class="welcome-text">Jeff Gold</p>
+            </div>
+            <div class="time-date">
+              <p class="time-text">3:15 AM</p>
+              <p class="date-text">09/01/2024</p>
+            </div>
+          </div>
+        </div>
+        <h2 class="work-order-number">
+          <img src="./public/WO.png" alt="Icon" class="WO-icon" />WO# 454
+        </h2>
+
+        <!-- Work Order Section -->
+        <div class="work-order-section">
+          <div class="time-pickers">
+            <div class="top-row">
+              <label for="paymentType" class="service-title"
+                >Payment Type</label
+              >
+              <select
+                class="payment-select"
+                name="payment-type"
+                id="paymentType"
+              >
+                <option value="0">Cash</option>
+                <option value="1">Check</option>
+                <option value="2">Credit Card</option>
+                <option value="3">Bill</option>
+                <option value="4">Insurance</option>
+                <option value="5">Other</option>
+              </select>
+            </div>
+            <div class="top-row">
+              <label for="start-time" class="service-title">Start Time</label>
+              <input
+                type="text"
+                class="time-input"
+                id="start-time"
+                value="Start Time"
+                data-placeholder="Start Time"
+                step="900"
+              />
+            </div>
+            <div class="top-row">
+              <label for="finish-time" class="service-title">Finish Time</label>
+              <input
+                type="text"
+                class="time-input"
+                id="finish-time"
+                value="Finish Time"
+                data-placeholder="Finish Time"
+                step="900"
+              />
+            </div>
+          </div>
+
+          <!-- Service Address Section -->
+          <div class="info-row">
+            <p class="service-title">Address</p>
+            <a href="#" target="_blank" class="service-link"
+              >123 Main St. Naples, FL 34109</a
+            >
+          </div>
+
+          <!-- Customer Info Section -->
+          <div class="info-row">
+            <p class="customer-title">Client</p>
+            <p class="customer-details">Chandrashekharan Ramachandran,</p>
+            <a href="tel:+1 (555) 123-4567" class="customer-phone"
+              >+1 (555) 123-4567</a
+            >
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="buttons-row">
+            <button id="officeButton" class="office-notes-button">
+              Office Notes
+            </button>
+            <button id="techButton" class="tech-notes-button">
+              Tech Notes
+            </button>
+          </div>
+        </div>
+
+        <!-- Office Notes Modal -->
+        <div id="officeNotesModal" class="office-modal">
+          <div class="office-modal-content">
+            <span id="closeOfficeModal" class="close-modal">&times;</span>
+            <p class="p-tech" class="office-notes">Office Notes:</p>
+            <p class="office-text" id="officeNoteDescription">
+              System Inspection: 2 degrees higher than the actual room
+              temperature. Set the system to cool at 72°F. Customer is satisfied
+              with the temperature setting. Perform a full inspection of the
+              HVAC system. Check for any signs of wear or damage, especially on
+              the condenser unit. Filter Replacement: Replace the air filter
+              with a new one. Use the HEPA filter provided in the van (Part
+              #34521).
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech Notes Modal -->
+        <div id="techNotesModal" class="tech-modal">
+          <div class="tech-modal-content">
+            <span id="closeTechModal" class="close-modal">&times;</span>
+            <label for="techNoteTextarea" class="p-tech">Tech Notes:</label>
+            <textarea
+              id="techNoteTextarea"
+              placeholder="Write your notes here..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Invoices Section -->
+        <div class="invoices-section">
+          <div class="section-header">
+            <h2 class="section-title">
+              <img src="./public/flat-rate.png" alt="Icon" class="WO-icon" />
+              Details
+            </h2>
+            <div class="toggle-buttons">
+              <button id="tmButton" class="toggle-button">T&M</button>
+              <button id="frButton" class="toggle-button">FLR</button>
+              <button id="ivButton" class="toggle-button selected-button">
+                INV
+              </button>
+            </div>
+          </div>
+          <div id="frContent" class="accordion-content" style="display: block">
+            <nav class="menu">
+              <!-- Electrical Section -->
+              <nav class="drop-down-menu">
+                <input
+                  type="checkbox"
+                  class="hidden activate"
+                  id="accordion-1"
+                  name="accordion-1"
+                />
+                <label for="accordion-1" class="menu-title">Electrical</label>
+                <div class="drop-down">
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/hqdefault.jpg" alt="Part Image" />
+                    <span>#833463</span>
+                    <span>A/C Fuse, valve</span>
+                    <span>$150.00</span>
+                  </div>
+                  <!-- Add more parts as needed -->
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/hqdefault.jpg" alt="Part Image" />
+                    <span>#343463</span>
+                    <span>Wire</span>
+                    <span>$50.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/hqdefault.jpg" alt="Part Image" />
+                    <span>#128363</span>
+                    <span>Coil</span>
+                    <span>$50.00</span>
+                  </div>
+                </div>
+              </nav>
+
+              <!-- Plumbing Section -->
+              <nav class="drop-down-menu">
+                <input
+                  type="checkbox"
+                  class="hidden activate"
+                  id="accordion-2"
+                  name="accordion-2"
+                />
+                <label for="accordion-2" class="menu-title">Plumbing</label>
+                <div class="drop-down">
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/plumbing.webp" alt="Part Image" />
+                    <span>#543634</span>
+                    <span>Pipe, 3/4"</span>
+                    <span>$20.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/plumbing.webp" alt="Part Image" />
+                    <span>#867345</span>
+                    <span>Valve, 1"</span>
+                    <span>$35.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/plumbing.webp" alt="Part Image" />
+                    <span>#125876</span>
+                    <span>Drain Cover</span>
+                    <span>$10.00</span>
+                  </div>
+                </div>
+              </nav>
+
+              <!-- HVAC Section -->
+              <nav class="drop-down-menu">
+                <input
+                  type="checkbox"
+                  class="hidden activate"
+                  id="accordion-3"
+                  name="accordion-3"
+                />
+                <label for="accordion-3" class="menu-title">HVAC</label>
+                <div class="drop-down">
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/ac-compressor.png" alt="Part Image" />
+                    <span>#998473</span>
+                    <span>Filter, 20x20</span>
+                    <span>$15.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/ac-compressor.png" alt="Part Image" />
+                    <span>#345262</span>
+                    <span>Thermostat</span>
+                    <span>$75.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/ac-compressor.png" alt="Part Image" />
+                    <span>#877321</span>
+                    <span>Blower Motor</span>
+                    <span>$120.00</span>
+                  </div>
+                </div>
+              </nav>
+
+              <!-- Misc Section -->
+              <nav class="drop-down-menu">
+                <input
+                  type="checkbox"
+                  class="hidden activate"
+                  id="accordion-4"
+                  name="accordion-4"
+                />
+                <label for="accordion-4" class="menu-title">Misc</label>
+                <div class="drop-down">
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/misc.jpg" alt="Part Image" />
+                    <span>#32174</span>
+                    <span>Evap, 78"</span>
+                    <span>$125.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/misc.jpg" alt="Part Image" />
+                    <span>#093262</span>
+                    <span>Evaporator Coil</span>
+                    <span>$78.00</span>
+                  </div>
+                  <div class="part-item">
+                    <input type="checkbox" class="part-checkbox" />
+                    <img src="./public/misc.jpg" alt="Part Image" />
+                    <span>#455321</span>
+                    <span>Misc Coil</span>
+                    <span>$124.00</span>
+                  </div>
+                </div>
+              </nav>
+            </nav>
+          </div>
+
+          <div id="bothContent" style="display: none">
+            <div id="ivContent" class="accordion-content" style="display: none">
+              <div class="selected-parts">
+                <div id="selectedPartsList"></div>
+              </div>
+            </div>
+            <div id="tmContent" class="accordion-content" style="display: none">
+              <div id="tmPartsList"></div>
+              <div id="noSelectedPartsList">There is nothing in the T&M!</div>
+            </div>
+            <div class="price-section">
+              <div class="price-btns">
+                <button class="future-button">Future</button>
+                <button class="submit-button">Submit</button>
+              </div>
+              <p id="totalPrice">Invoice Total: $0.00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Equipment -->
+        <div class="section">
+          <h2 class="section-title">
+            <img src="./public/equip.png" alt="Icon" class="WO-icon" />Service
+            Equipment
+          </h2>
+          <ul class="service-equipment-list">
+            <li>
+              <span class="part-number">Condensing Unit</span>
+              <span class="job-details"
+                >A/C condensing unit,stainless steel housing, rust-resistant
+                construction, exceptional cooling efficiency.</span
+              >
+              <span class="manufacturer">Kingston Manufacturing, Inc.</span>
+              <span class="action-icons">
+                <img src="./public/eye.png" alt="View Icon" class="view-icon" />
+                <img
+                  src="./public/upload.png"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+              </span>
+            </li>
+            <li>
+              <span class="part-number">HEPA Air Filter</span>
+              <span class="job-details"
+                >High-efficiency HEPA air filter, captures fine
+                particulates.</span
+              >
+              <span class="manufacturer">Roush Industires, Inc.</span>
+              <span class="action-icons">
+                <img src="./public/eye.png" alt="View Icon" class="view-icon" />
+                <img
+                  src="./public/upload.png"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+              </span>
+            </li>
+            <li>
+              <span class="part-number">Brass Gate Valve</span>
+              <span class="job-details"
+                >Brass gate valve, durable construction,
+                corrosion-resistant.</span
+              >
+              <span class="manufacturer">Johnstone Supply, Inc.</span>
+              <span class="action-icons">
+                <img src="./public/eye.png" alt="View Icon" class="view-icon" />
+                <img
+                  src="./public/upload.png"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+              </span>
+            </li>
+            <li>
+              <span class="part-number">Compressor Fan</span>
+              <span class="job-details"
+                >Optimized airflow, durable material. Type of: blade, vane. flat
+                surface that rotates and pushes against air or water.</span
+              >
+              <span class="manufacturer">Ferguson HVAC, Inv.</span>
+              <span class="action-icons">
+                <img src="./public/eye.png" alt="View Icon" class="view-icon" />
+                <img
+                  src="./public/upload.png"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+              </span>
+            </li>
+            <li>
+              <span class="part-number">Thermo Sensor</span>
+              <span class="job-details"
+                >High sensitivity, fast response time. Device that measures
+                temperature by using the thermoelectric effect</span
+              >
+              <span class="manufacturer">DUCTZ Construction Mach.</span>
+              <span class="action-icons">
+                <img src="./public/eye.png" alt="View Icon" class="view-icon" />
+                <img
+                  src="./public/upload.png"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Service Agreement -->
+        <div class="section">
+          <h2 class="section-title">
+            <img src="./public/hand-shake.png" alt="Icon" class="WO-icon" />
+            Service Agreements
+          </h2>
+          <ul class="service-agreements-list">
+            <li>
+              <span class="agreement-name clickable">SA #32</span>
+              <div class="date-container">
+                <span class="agreement-start-date"
+                  >Start: <span class="bold-date">08/09/2024</span></span
+                >
+                <span class="agreement-finish-date"
+                  >Finish: <span class="bold-date">09/12/2024</span></span
+                >
+              </div>
+              <span class="agreement-price">$150.00</span>
+              <span class="term">12 MO</span>
+              <span class="visits">6 visits</span>
+            </li>
+            <li>
+              <span class="agreement-name clickable">SA #34</span>
+              <div class="date-container">
+                <span class="agreement-start-date"
+                  >Start: <span class="bold-date">12/19/2024</span></span
+                >
+                <span class="agreement-finish-date"
+                  >Finish: <span class="bold-date">01/03/2025</span></span
+                >
+              </div>
+              <span class="agreement-price">$200.00</span>
+              <span class="term">12 MO</span>
+              <span class="visits">4 visits</span>
+            </li>
+            <li>
+              <span class="agreement-name clickable">SA #77</span>
+              <div class="date-container">
+                <span class="agreement-start-date"
+                  >Start: <span class="bold-date">11/09/2024</span></span
+                >
+                <span class="agreement-finish-date"
+                  >Finish: <span class="bold-date">12/04/2024</span></span
+                >
+              </div>
+              <span class="agreement-price">$375.00</span>
+              <span class="term">6 MO</span>
+              <span class="visits">3 visits</span>
+            </li>
+            <li>
+              <span class="agreement-name clickable">SA #84</span>
+              <div class="date-container">
+                <span class="agreement-start-date"
+                  >Start: <span class="bold-date">02/23/2025</span>
+                </span>
+                <span class="agreement-finish-date"
+                  >Finish: <span class="bold-date">02/25/2025</span></span
+                >
+              </div>
+              <span class="agreement-price">$220.00</span>
+              <span class="term">3 MO</span>
+              <span class="visits">2 visits</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Service History -->
+        <div class="section">
+          <h2 class="section-title">
+            <img src="./public/history.png" alt="Icon" class="WO-icon" />Service
+            History
+          </h2>
+          <ul class="service-history-list">
+            <li>
+              <span class="sh-date">04/18/2024</span>
+              <span class="invoice-number">Inv. 2024-18-47</span>
+              <span class="total-price">$275.00</span>
+              <span class="download-link"><a href="#">(Download PDF)</a></span>
+            </li>
+            <li>
+              <span class="sh-date">12/31/2023</span>
+              <span class="invoice-number">Inv. 2023-12-96</span>
+              <span class="total-price">$210.00</span>
+              <span class="download-link"><a href="#">(Download PDF)</a></span>
+            </li>
+            <li>
+              <span class="sh-date">11/25/2023</span>
+              <span class="invoice-number">Inv. 2023-51-05</span>
+              <span class="total-price">$320.00</span>
+              <span class="download-link"><a href="#">(Download PDF)</a></span>
+            </li>
+            <li>
+              <span class="sh-date">09/15/2023</span>
+              <span class="invoice-number">Inv. 2023-15-59</span>
+              <span class="total-price">$150.00</span>
+              <span class="download-link"><a href="#">(Download PDF)</a></span>
+            </li>
+            <li>
+              <span class="sh-date">03/01/2022</span>
+              <span class="invoice-number">Inv. 2022-01-88</span>
+              <span class="total-price">$400.00</span>
+              <span class="download-link"><a href="#">(Download PDF)</a></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Upcoming -->
+        <div class="section">
+          <h2 class="section-title">
+            <img src="./public/house.png" alt="Icon" class="WO-icon" />Upcoming
+          </h2>
+          <ul class="upcoming-list">
+            <li>
+              <span class="work-order">WO #43</span>
+              <span class="customer-name">John Doe</span>
+              <span class="address">123 Elm St, Naples, FL 34554</span>
+              <div class="schedule-dates">
+                <span class="sched-start"
+                  >SCH STR: <span class="bold-up">09:00AM</span></span
+                >
+                <span class="sched-finish"
+                  >SCH FIN: <span class="bold-up">01:15PM</span></span
+                >
+              </div>
+            </li>
+            <li>
+              <span class="work-order">WO #27</span>
+              <span class="customer-name">Jane Smith</span>
+              <span class="address">456 Maple Ave, Fort Myers, FL 33901</span>
+              <div class="schedule-dates">
+                <span class="sched-start"
+                  >SCH STR: <span class="bold-up">12:00PM</span></span
+                >
+                <span class="sched-finish"
+                  >SCH FIN: <span class="bold-up">05:00PM</span></span
+                >
+              </div>
+            </li>
+            <li>
+              <span class="work-order">WO #58</span>
+              <span class="customer-name">Muhammad Abdulrahman Al-Mutairi</span>
+              <span class="address">789 Oak St, Cape Coral, FL 33914</span>
+              <div class="schedule-dates">
+                <span class="sched-start"
+                  >SCH STR: <span class="bold-up">10:00AM</span></span
+                >
+                <span class="sched-finish"
+                  >SCH FIN: <span class="bold-up">02:00PM</span></span
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment-Modal -->
+    <div class="payment-modal">
+      <div class="payment-modal-content">
+        <div class="payment-modal-top">
+          <p class="payment-modal-text"><b>WO #:</b> 454</p>
+          <p class="payment-modal-text">
+            <b>Name:</b> Chandrashekharan Ramachandran
+          </p>
+
+          <p class="payment-modal-text">
+            <b>Address:</b> 123 Main St. Naples, FL 34109
+          </p>
+          <p class="payment-modal-text"><b>Mobile:</b> +923156565789</p>
+          <p class="payment-modal-text">
+            <b>Email:</b> bestscheduling@gmail.com
+          </p>
+        </div>
+        <div class="payment-modal-header">
+          <button>Send Pay Link</button>
+          <div class="tab active">Cash</div>
+          <div class="tab">Check</div>
+          <div class="tab">Credit Card</div>
+          <div class="tab">Send Bill</div>
+          <div class="tab">Insurance</div>
+          <div class="tab">Other</div>
+          <button>Future Use</button>
+        </div>
+        <div class="payment-modal-body">
+          <div class="payment-modal-cash hide">
+            <div class="payment-modal-group">
+              <label for="amount-billed-cash">Amount Billed ($)</label>
+              <input
+                type="number"
+                name="amount-billed-cash"
+                id="amount-billed-cash"
+                readonly
+              />
+            </div>
+            <div class="payment-modal-group">
+              <label for="amount-collected-cash">Amount Collected ($)</label>
+              <input
+                type="number"
+                name="amount-collected-cash"
+                id="amount-collected-cash"
+              />
+            </div>
+          </div>
+          <div class="payment-modal-check hide">
+            <div class="payment-modal-group">
+              <label for="amount-billed-check">Amount Billed ($)</label>
+              <input
+                type="number"
+                name="amount-billed-check"
+                id="amount-billed-check"
+                readonly
+              />
+            </div>
+            <div class="payment-modal-group">
+              <label for="check-number">Check Number</label>
+              <input type="number" name="check-number" id="check-number" />
+            </div>
+          </div>
+          <div class="payment-modal-credit show">
+            <div class="payment-modal-group">
+              <label for="card-owner">Card Owner</label>
+              <input type="number" name="card-owner" id="card-owner" />
+            </div>
+            <div class="payment-modal-group payment-modal-group-card-number">
+              <label for="card-number">Card Number</label>
+              <input type="number" name="card-number" id="card-number" />
+              <div class="card-images">
+                <img src="./public/visa-card.svg" alt="" />
+                <img src="./public/mastercard.svg" alt="" />
+                <img src="./public/american-express.svg" alt="" />
+              </div>
+            </div>
+            <div class="payment-modal-box">
+              <div class="payment-modal-group">
+                <label for="expiration-month">Expiration Date</label>
+                <div class="payment-modal-expire">
+                  <input
+                    type="number"
+                    name="expiration-month"
+                    id="expiration-month"
+                  />
+                  <input
+                    type="number"
+                    name="expiration-year"
+                    id="expiration-month"
+                  />
+                </div>
+              </div>
+              <div class="payment-modal-group">
+                <label for="cvv">CVV</label>
+                <input type="number" name="cvv" id="cvv" />
+              </div>
+            </div>
+          </div>
+          <div class="payment-modal-bill hide">
+            <div class="payment-modal-group">
+              <label for="amount-billed-bill">Amount Billed ($)</label>
+              <input
+                type="number"
+                name="amount-billed-bill"
+                id="amount-billed-bill"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="payment-modal-insurance hide">
+            <div class="payment-modal-group">
+              <label for="amount-billed-insurance">Amount Billed ($)</label>
+              <input
+                type="number"
+                name="amount-billed-insurance"
+                id="amount-billed-insurance"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="payment-modal-other hide">
+            <div class="payment-modal-group">
+              <label for="amount-billed-other">Amount Billed ($)</label>
+              <input
+                type="number"
+                name="amount-billed-other"
+                id="amount-billed-other"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+        <div class="payment-modal-footer">
+          <button class="payment-modal-btn">Close Work Order/Estimate</button>
+          <button class="payment-modal-close-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirm-modal" id="confirmation-modal">
+      <div class="confirm-modal-content">
+        <h2>Are you sure you want to close this call?</h2>
+        <div class="confirm-modal-footer">
+          <button class="payment-modal-close-btn">No</button>
+          <button class="payment-modal-btn">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Description Modal -->
+    <div id="description-modal" class="confirm-modal">
+      <div class="confirm-modal-content">
+        <h3 class="description-title">Description</h3>
+        <textarea id="modal-description" rows="5"></textarea>
+        <div class="payment-modal-footer">
+          <button id="modal-save" class="payment-modal-btn">
+            Update Description
+          </button>
+          <button id="modal-close" class="payment-modal-close-btn">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- T&M Modal -->
+    <div id="tm-modal" class="tm-modal">
+      <div class="tm-modal-content">
+        <h3 class="tm-modal-title">T&M</h3>
+        <div class="tm-modal-body">
+          <div class="tm-modal-field">
+            <input
+              type="number"
+              name="tmNumber"
+              id="tmNumber"
+              placeholder="T&M Number"
+            />
+          </div>
+          <div class="tm-modal-field">
+            <textarea
+              name="tmDescription"
+              id="tmDescription"
+              placeholder="T&M Description"
+            ></textarea>
+          </div>
+          <div class="tm-modal-field">
+            <input
+              type="number"
+              name="tmPrice"
+              id="tmPrice"
+              placeholder="T&M ($)"
+            />
+          </div>
+        </div>
+        <div class="payment-modal-footer">
+          <button id="tm-modal-add" class="payment-modal-btn">
+            Add T&M Content
+          </button>
+          <button id="tm-modal-close" class="payment-modal-close-btn">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
